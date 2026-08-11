@@ -1,12 +1,25 @@
 package listaencadeada;
 
 import colecao.IColecao;
+import java.util.Comparator;
 
 public class ListaEncadeada<T> implements IColecao<T>{
     private No<T> prim;
+    private final Comparator<T> comparador;
+    private final boolean ehOrdenada;
 
+    public ListaEncadeada() {
+        this(null, false);
+    }
+
+    public ListaEncadeada(Comparator<T> comparador, boolean ehOrdenada) {
+        this.comparador = comparador;
+        this.ehOrdenada = ehOrdenada;
+    }
+
+    
     @Override
-    public void adicionar(T novoValor) {
+    public boolean adicionar(T novoValor) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'adicionar'");
     }

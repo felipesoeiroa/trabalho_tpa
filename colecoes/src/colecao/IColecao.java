@@ -21,9 +21,10 @@ public interface IColecao<T> {
     /**
      * Método para adicionar um elemento à estrutura.
      * @param novoValor - Elemento do Tipo T a ser armazenado na estrutura.
+     * @return true caso o elemento tenha sido adicionado. Caso contrário retorna false.
      * 
      */
-    public void adicionar(T novoValor);
+    public boolean adicionar(T novoValor);
     
     
     /**

@@ -3,7 +3,7 @@
 Disciplina: Técnicas de Programação Avançadas
 Trabalho: Implementação de uma biblioteca de Listas Encadeadas Genéricas + programa de agenda de contatos
 
-> **Observação:** este arquivo contém as três etapas do relatório (Etapas 1, 2 e 3). Os pontos marcados como **[PREENCHER PELO GRUPO]** precisam da informação do grupo (integrantes e link do repositório) antes da entrega.
+> **Observação:** este arquivo contém as três etapas do relatório (Etapas 1, 2 e 3). Só falta preencher a tabela de integrantes do grupo (seção 1.1) antes da entrega — marcada como **[PREENCHER PELO GRUPO]**.
 
 ---
 
@@ -26,7 +26,7 @@ O grupo utilizou o **Claude Code** (assistente de IA da Anthropic, executado via
 1. **Levantamento do código-base.** A IA foi usada para clonar o repositório do professor (`https://github.com/victoriocarvalho/tpa_bsi.git`) e mapear a estrutura já fornecida: a interface `IColecao<T>`, a classe `No<T>`, o esqueleto de `ListaEncadeada<T>` (com os métodos `adicionar`, `pesquisar`, `remover` e `quantidadeNos` lançando `UnsupportedOperationException`), e o exemplo de domínio (`Aluno`, `ComparadorAlunoPorMatricula`, `Main`) que ilustra como a biblioteca seria consumida.
 
 2. **Implementação da biblioteca (Item 1).** Com base nos requisitos do enunciado, a IA implementou os quatro métodos pendentes de `ListaEncadeada<T>`, junto com o `toString()`. As decisões de projeto foram discutidas e justificadas durante a conversa, em especial:
-   - Quando a lista **não é ordenada**, a inserção de um novo elemento é sempre feita no início da lista (custo constante).
+   - Quando a lista **não é ordenada**, a inserção de um novo elemento é sempre feita no final da lista, usando um ponteiro auxiliar para o último nó (custo constante, preservando a ordem de chegada dos elementos).
    - Quando a lista **é ordenada**, a inserção percorre a lista usando o `Comparator<T>` recebido no construtor até encontrar a posição correta.
    - Foi adicionado um contador interno (`quantidade`) para que `quantidadeNos()` não precise percorrer a lista.
    - Essas escolhas foram feitas propositalmente para gerar diferenças de complexidade mensuráveis entre lista ordenada e não-ordenada, que são discutidas na Etapa 2 deste relatório.
@@ -51,9 +51,7 @@ Em todas as etapas, o código gerado pela IA foi lido, testado e validado pelo g
 
 ### 1.3 Repositório GitHub
 
-> **[PREENCHER PELO GRUPO]** — o clone local ainda aponta para o repositório original do professor (`https://github.com/victoriocarvalho/tpa_bsi.git`), que é somente leitura para o grupo. É necessário criar um repositório próprio (fork ou repositório novo) no GitHub de um integrante do grupo, enviar (`git push`) o código para lá, e colocar o link aqui:
-
-**Endereço do repositório:** `https://github.com/[usuario-do-grupo]/[nome-do-repo]`
+**Endereço do repositório:** https://github.com/eduardoarrigoni/tpa_bsi
 
 O `README.md` do repositório foi atualizado para descrever a organização do código-fonte e como compilar/executar os dois programas (o exemplo de `Aluno` fornecido pelo professor e o programa de agenda de contatos desenvolvido no Item 2).
 

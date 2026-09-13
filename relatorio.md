@@ -32,11 +32,10 @@ No trabalho foi utilizado o **Claude Code** como ferramenta de apoio para o dese
 
 Em todas as etapas, testamos e validamos o que foi feito pela IA, e as decisões de projeto (como a estratégia de inserção no início vs. em posição ordenada, e o uso de duas listas para o programa de contatos) foram compreendidas e podem ser explicadas pelo grupo.
 
-> **[PREENCHER PELO GRUPO, se aplicável]** — citem aqui outras ferramentas de IA eventualmente usadas por integrantes individualmente (ex.: para dúvidas de sintaxe, revisão de texto, etc.).
 
 ### 1.3 Repositório GitHub
 
-**Endereço do repositório:** https://github.com/eduardoarrigoni/tpa_bsi
+**Endereço do repositório:** https://github.com/felipesoeiroa/trabalho_tpa
 
 O `README.md` do repositório foi atualizado para descrever a organização do código-fonte e como compilar/executar os dois programas.
 

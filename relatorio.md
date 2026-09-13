@@ -3,7 +3,6 @@
 Disciplina: Técnicas de Programação Avançadas
 Trabalho: Implementação de uma biblioteca de Listas Encadeadas Genéricas + programa de agenda de contatos
 
-> **Observação:** este arquivo contém as três etapas do relatório (Etapas 1, 2 e 3). Só falta preencher a tabela de integrantes do grupo (seção 1.1) antes da entrega — marcada como **[PREENCHER PELO GRUPO]**.
 
 ---
 
@@ -21,17 +20,17 @@ Trabalho: Implementação de uma biblioteca de Listas Encadeadas Genéricas + pr
 
 ### 1.2 Uso de ferramentas de Inteligência Artificial
 
-O grupo utilizou o **Claude Code** (assistente de IA da Anthropic, executado via CLI/terminal integrado ao VS Code) como ferramenta de apoio ao longo de todo o desenvolvimento. A seguir, uma descrição detalhada, em ordem cronológica, de como a ferramenta foi empregada:
+No trabalho foi utilizado o **Claude Code** como ferramenta de apoio para o desenvolvimento. Abaixo temos uma descrição detalhada, em ordem cronológica, de como a ferramenta foi empregada:
 
-1. **Levantamento do código-base.** A IA foi usada para clonar o repositório do professor (`https://github.com/victoriocarvalho/tpa_bsi.git`) e mapear a estrutura já fornecida: a interface `IColecao<T>`, a classe `No<T>`, o esqueleto de `ListaEncadeada<T>` (com os métodos `adicionar`, `pesquisar`, `remover` e `quantidadeNos` lançando `UnsupportedOperationException`), e o exemplo de domínio (`Aluno`, `ComparadorAlunoPorMatricula`, `Main`) que ilustra como a biblioteca seria consumida.
+1. **Levantamento do código-base.** A IA foi usada para clonar o repositório do professor e mapear a estrutura já fornecida: a interface `IColecao<T>`, a classe `No<T>`, o esqueleto de `ListaEncadeada<T>` (com os métodos `adicionar`, `pesquisar`, `remover` e `quantidadeNos` lançando `UnsupportedOperationException`), e o exemplo de domínio (`Aluno`, `ComparadorAlunoPorMatricula`, `Main`) que ilustra como a biblioteca seria consumida.
 
-2. **Implementação da biblioteca (Item 1).** Com base nos requisitos do enunciado, a IA implementou os quatro métodos pendentes de `ListaEncadeada<T>`, junto com o `toString()`. As decisões de projeto foram discutidas e justificadas durante a conversa, em especial:
+2. **Explicações conceituais sob demanda.** Durante a implementação, tiramos dúvidas pontuais de Java com a IA, por exemplo: o que é a classe `StringBuilder`, por que `toString()` retorna `sb.toString()` em vez do próprio `StringBuilder`, e por que essa chamada não configura recursão (já que `StringBuilder.toString()` é um método de uma classe diferente de `ListaEncadeada.toString()`).
+
+3. **Implementação da biblioteca (Item 1).** Com base nos requisitos do enunciado, a IA implementou os quatro métodos pendentes de `ListaEncadeada<T>`, junto com o `toString()`. As decisões de projeto foram discutidas e justificadas durante a conversa, em especial:
    - Quando a lista **não é ordenada**, a inserção de um novo elemento é sempre feita no final da lista, usando um ponteiro auxiliar para o último nó (custo constante, preservando a ordem de chegada dos elementos).
    - Quando a lista **é ordenada**, a inserção percorre a lista usando o `Comparator<T>` recebido no construtor até encontrar a posição correta.
    - Foi adicionado um contador interno (`quantidade`) para que `quantidadeNos()` não precise percorrer a lista.
    - Essas escolhas foram feitas propositalmente para gerar diferenças de complexidade mensuráveis entre lista ordenada e não-ordenada, que são discutidas na Etapa 2 deste relatório.
-
-3. **Explicações conceituais sob demanda.** Durante a implementação, o grupo tirou dúvidas pontuais de Java com a IA, por exemplo: o que é a classe `StringBuilder`, por que `toString()` retorna `sb.toString()` em vez do próprio `StringBuilder`, e por que essa chamada não configura recursão (já que `StringBuilder.toString()` é um método de uma classe diferente de `ListaEncadeada.toString()`).
 
 4. **Implementação do programa de agenda de contatos (Item 2).** A IA foi usada para projetar e implementar o pacote `contato`, contendo:
    - a classe de domínio `Contato` (atributos `nome` e `telefone`, `toString()` no formato `"nome-telefone"`);
@@ -39,7 +38,7 @@ O grupo utilizou o **Claude Code** (assistente de IA da Anthropic, executado via
    - a classe `GerenciadorContatos`, com o menu interativo (carregar de arquivo, adicionar, pesquisar por nome, pesquisar por telefone, remover por telefone, alterar dados, sair) e a medição de tempo de execução (via `System.nanoTime()`) das operações de carga, busca e remoção.
    A decisão de usar **duas instâncias de `IColecao<Contato>`** (uma indexada por nome, outra por telefone) foi discutida com a IA para permitir busca eficiente nos dois sentidos, com o cuidado de manter as regras de negócio (telefone único, sincronização entre as duas listas) implementadas **fora** da biblioteca `ListaEncadeada`, conforme exigido pelo enunciado.
 
-5. **Configuração do ambiente e testes.** Como a máquina utilizada não possuía um JDK instalado, a IA baixou e instalou o **Eclipse Temurin JDK 21** (distribuição open-source do OpenJDK), configurou as variáveis de ambiente `JAVA_HOME`/`PATH`, compilou todo o projeto (`javac`) e executou o programa `GerenciadorContatos` com um roteiro de entradas simuladas cobrindo todas as opções do menu (carga de arquivo, adição, pesquisa por nome e por telefone, remoção, alteração e saída), validando que os resultados e a contagem final de contatos estavam corretos antes da entrega.
+5. **Configuração do ambiente e testes.** Pedimos para executar o programa `GerenciadorContatos` com um roteiro de entradas simuladas cobrindo todas as opções do menu (carga de arquivo, adição, pesquisa por nome e por telefone, remoção, alteração e saída), validando que os resultados e a contagem final de contatos estavam corretos antes da entrega.
 
 6. **Testes empíricos de complexidade (Etapa 3).** A IA implementou um utilitário (`util.GeradorEntrada`) para gerar arquivos de contatos aleatórios de tamanhos variados, com telefones únicos e nomes únicos (para não introduzir ambiguidade nos testes). Em seguida, automatizou a execução do `GerenciadorContatos` (via redirecionamento de entrada) para cada combinação de tamanho de arquivo e tipo de lista (ordenada/não-ordenada), coletando os tempos de carga, busca e remoção. Durante essa etapa, a IA identificou empiricamente que os tamanhos sugeridos no enunciado (200.000/400.000 elementos) seriam impraticáveis de executar nesta máquina (dezenas de minutos a horas), por causa de um efeito não previsto na Etapa 2: a checagem de telefone duplicado (regra de negócio do programa, feita com uma chamada a `pesquisar` a cada inserção) torna o carregamento do arquivo O(n²) mesmo quando a lista subjacente é não-ordenada. Por isso, os tamanhos de teste foram ajustados para 10.000/25.000/50.000/100.000, o que foi discutido e decidido durante a conversa com a IA, e documentado na seção 3.1 deste relatório.
 
@@ -53,7 +52,7 @@ Em todas as etapas, o código gerado pela IA foi lido, testado e validado pelo g
 
 **Endereço do repositório:** https://github.com/eduardoarrigoni/tpa_bsi
 
-O `README.md` do repositório foi atualizado para descrever a organização do código-fonte e como compilar/executar os dois programas (o exemplo de `Aluno` fornecido pelo professor e o programa de agenda de contatos desenvolvido no Item 2).
+O `README.md` do repositório foi atualizado para descrever a organização do código-fonte e como compilar/executar os dois programas.
 
 ---
 
@@ -63,8 +62,8 @@ Todas as referências de linha abaixo correspondem ao arquivo `colecoes/src/list
 
 Premissas usadas em toda a análise:
 
-- A estrutura é uma **lista simplesmente encadeada**, com um ponteiro para o primeiro nó (`prim`) e um ponteiro para o último nó (`ultimo`, linha 8). Não há acesso indexado/aleatório — para chegar a qualquer nó que não seja o primeiro ou o último, é necessário percorrer a lista nó a nó a partir de `prim`.
-- O `Comparator<T>.compare()` (ou o `equals()` usado como alternativa, linhas 23–28) é tratado como uma operação de **custo constante**, O(1), pois compara diretamente os atributos dos objetos (ex.: `int`, `String` curtas) e não depende do tamanho da lista.
+- A estrutura é uma **lista simplesmente encadeada**, com um ponteiro para o primeiro nó (`prim`) e um ponteiro para o último nó (`ultimo`). Não há acesso indexado/aleatório. Para chegar a qualquer nó que não seja o primeiro ou o último, é necessário percorrer a lista nó a nó a partir de `prim`.
+- O `Comparator<T>.compare()` (ou o `equals()`) é tratado como uma operação de **custo constante**, O(1), pois compara diretamente os atributos dos objetos  e não depende do tamanho da lista.
 
 ### 2.1 Método `adicionar(T novoValor)`
 

@@ -1,6 +1,6 @@
 # 📚 Disciplina: Técnicas de Programação Avançadas (2026)
 
-Este repositório contém a implementação do trabalho de **Estruturas de Dados e Programação Orientada a Objetos em Java**: uma biblioteca de listas encadeadas genéricas (`ListaEncadeada<T>`) e dois programas de exemplo que a utilizam.
+Este repositório contém a implementação do trabalho em Java, utilizando dos conhecimentos de **Estruturas de Dados e Programação Orientada a Objetos**. Foi utilizada uma biblioteca de listas encadeadas genéricas (`ListaEncadeada<T>`) e dois programas de exemplo que a utilizam.
 
 ---
 
@@ -8,19 +8,18 @@ Este repositório contém a implementação do trabalho de **Estruturas de Dados
 
 Todo o código-fonte está na pasta `colecoes/src`, organizada por pacote:
 
-* **`colecao`** — interface `IColecao<T>`, fornecida pelo professor, que toda estrutura de dados do trabalho deve implementar (`adicionar`, `pesquisar`, `remover`, `quantidadeNos`).
+* **`colecao`** — interface `IColecao<T>`, fornecida para utilizar no trabalho, que toda estrutura de dados do trabalho deve implementar (`adicionar`, `pesquisar`, `remover`, `quantidadeNos`).
 * **`listaencadeada`** — a biblioteca implementada no Item 1 do trabalho:
   * `No<T>`: nó genérico da lista (valor + ponteiro para o próximo).
-  * `ListaEncadeada<T>`: implementação de `IColecao<T>` como lista simplesmente encadeada. Recebe no construtor um `Comparator<T>` e um `boolean` indicando se a lista deve se manter ordenada. Não imprime nenhuma mensagem — toda interação com o usuário fica a cargo dos programas que a utilizam.
+  * `ListaEncadeada<T>`: implementação de `IColecao<T>` como lista simplesmente encadeada. Recebe no construtor um `Comparator<T>` e um `boolean` indicando se a lista deve se manter ordenada. Não imprime nenhuma mensagem, toda interação com o usuário fica a cargo dos programas que a utilizam.
 * **`dominio`** — exemplo de uso fornecido pelo professor: classe `Aluno`, `ComparadorAlunoPorMatricula` e `Main` (cadastro simples de alunos por matrícula).
 * **`contato`** — programa do Item 2 do trabalho: uma agenda de contatos que usa a `ListaEncadeada`.
   * `Contato`: classe de domínio (`nome`, `telefone`), com `toString()` no formato `"nome-telefone"`.
   * `ComparadorContatoPorNome` / `ComparadorContatoPorTelefone`: comparadores usados para manter/pesquisar duas instâncias de `IColecao<Contato>` — uma indexada por nome, outra por telefone.
-  * `GerenciadorContatos`: classe com `main`, contendo o menu interativo (carregar de arquivo, adicionar, pesquisar por nome, pesquisar por telefone, remover por telefone, alterar dados, sair) e a medição do tempo de execução das operações de carga, busca e remoção.
+  * `GerenciadorContatos`: classe com `main`, contendo o menu interativo e a medição do tempo de execução das operações de carga, busca e remoção.
 * **`util`** — `GeradorEntrada`: utilitário para gerar arquivos de contatos aleatórios de qualquer tamanho, usado nos testes empíricos de complexidade (Etapa 3 do relatório). Uso: `java -cp bin util.GeradorEntrada <quantidade> <arquivo_saida> [seed]`.
-* **`arvorebinaria`** — classe-base fornecida pelo professor para um trabalho futuro de árvore binária (não faz parte deste trabalho de listas).
 * **`colecoes/entrada.txt`** — arquivo de exemplo usado pela opção "Carregar dados de arquivo" do `GerenciadorContatos`. Formato: uma linha por contato, `nome;telefone`.
-* **`colecoes/dados_teste/`** — arquivos grandes gerados por `GeradorEntrada` e usados nos testes empíricos (não versionados no git; reproduzíveis a qualquer momento com o comando acima).
+* **`colecoes/dados_teste/`** — arquivos grandes gerados por `GeradorEntrada` e usados nos testes empíricos.
 
 ---
 

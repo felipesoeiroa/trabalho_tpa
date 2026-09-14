@@ -29,7 +29,7 @@ Para garantir que a IDE reconheça o projeto corretamente, siga estes passos:
 
 1.  **Clone o repositório:**
     ```bash
-    git clone https://github.com/seu-usuario/nome-do-repo.git
+    git clone https://github.com/felipesoeiroa/trabalho_tpa
     ```
 2.  **Abra o VS Code.**
 3.  Vá em `File > Open Folder...` e selecione a pasta **`colecoes`**.
